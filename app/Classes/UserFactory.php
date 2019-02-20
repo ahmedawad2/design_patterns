@@ -6,9 +6,12 @@ namespace Classes;
 use Interfaces\GetUser;
 use Interfaces\SwaziRepoInterface;
 use Interfaces\UserRepoInterface;
+use Traits\GetUserTrait;
+
 
 class UserFactory
 {
+
     private $basicUser;
 
     public function __construct()
@@ -16,18 +19,19 @@ class UserFactory
         $this->basicUser = new User();
     }
 
-    public function getBasicUser(UserRepoInterface $userRepo): GetUser
+    public function getBasicUser(UserRepoInterface $userRepo): \Interfaces\User
     {
         $this->prepareBasicUser($userRepo);
-        return $this->basicUser->getUser();
+
+        return $this->basicUser;
     }
 
-    public function getSwaziUser(SwaziRepoInterface $swaziRepo, \Interfaces\User $user = null): GetUser
+    public function getSwaziUser(SwaziRepoInterface $swaziRepo, \Interfaces\User $user = null): \Interfaces\User
     {
         $this->prepareBasicUser($swaziRepo);
         $swaziUser = new SwaziUser(isset($user) ? $user : $this->basicUser);
         $swaziUser->setDate($swaziRepo->getDate());
-        return $swaziUser->getUser();
+        return $swaziUser;
     }
 
     private function prepareBasicUser(UserRepoInterface $userRepo)

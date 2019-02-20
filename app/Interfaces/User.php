@@ -8,4 +8,8 @@ interface User
 
     public function setEmail($email = null);
 
+    public function getName();
+
+    public function getEmail();
+
 }
