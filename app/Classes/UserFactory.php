@@ -11,13 +11,9 @@ class UserFactory
 {
     private $basicUser;
 
-    public function __construct(\Interfaces\User $user = null)
+    public function __construct()
     {
-        if (isset($user)) {
-            $this->basicUser = $user;
-        } else {
-            $this->basicUser = new User();
-        }
+        $this->basicUser = new User();
     }
 
     public function getBasicUser(UserRepoInterface $userRepo): GetUser
@@ -26,10 +22,10 @@ class UserFactory
         return $this->basicUser->getUser();
     }
 
-    public function getSwaziUser(SwaziRepoInterface $swaziRepo): GetUser
+    public function getSwaziUser(SwaziRepoInterface $swaziRepo, \Interfaces\User $user = null): GetUser
     {
         $this->prepareBasicUser($swaziRepo);
-        $swaziUser = new SwaziUser($this->basicUser);
+        $swaziUser = new SwaziUser(isset($user) ? $user : $this->basicUser);
         $swaziUser->setDate($swaziRepo->getDate());
         return $swaziUser->getUser();
     }

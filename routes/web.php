@@ -30,5 +30,5 @@ $router->get('/dp', function () {
     $basicData['date'] = \Carbon\Carbon::now();
     $data = new \Classes\SwaziArrayRepo($basicData);
 
-    print_r((new \Classes\UserFactory($user))->getSwaziUser($data));
+    print_r($userFactory->getSwaziUser($data, $user));
 });
