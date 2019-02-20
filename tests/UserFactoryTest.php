@@ -7,8 +7,8 @@ class UserFactoryTest extends TestCase
 
     public function setUp()
     {
-//        $this->userData = new \Classes\UserArrayRepo(['name' => 'ahmed', 'email' => 'aaaa@aaa.com']);
-        $this->userData = 'aaa';
+        $this->userData = new \Classes\UserArrayRepo(['name' => 'ahmed', 'email' => 'aaaa@aaa.com']);
+//        $this->userData = 'aaa';
     }
 
     public function testInput()
@@ -21,6 +21,6 @@ class UserFactoryTest extends TestCase
      */
     public function testReturnType()
     {
-        $this->assertInstanceOf(\Classes\User::class, \Classes\UserFactory::getBasicUser($this->userData));
+        $this->assertInstanceOf(\Interfaces\GetUser::class, (new \Classes\UserFactory())->getBasicUser($this->userData));
     }
 }
