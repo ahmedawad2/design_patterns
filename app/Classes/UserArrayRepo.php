@@ -12,13 +12,13 @@ class UserArrayRepo implements UserRepoInterface
 
     public function __construct(array $userRepo)
     {
-        $this->name = $userRepo['name'];
-        $this->email = $userRepo['email'];
+        $this->name = array_key_exists('name', $userRepo) ? $userRepo['name'] : null;
+        $this->email = array_key_exists('email', $userRepo) ? $userRepo['email'] : null;
     }
 
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : false;
     }
 
     public function getEmail()

@@ -18,24 +18,18 @@ class User implements \Interfaces\User
         $this->email = $email;
     }
 
-    public function getUser(): \Interfaces\User
-    {
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getUser(): \Interfaces\User
+    {
+        return $this;
     }
 }
