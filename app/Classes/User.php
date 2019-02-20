@@ -4,8 +4,6 @@ namespace Classes;
 
 class User implements \Interfaces\User
 {
-//    use GetUserTrait;
-
     private $name;
     private $email;
 

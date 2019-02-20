@@ -2,12 +2,8 @@
 
 namespace Classes;
 
-
-use Interfaces\GetUser;
 use Interfaces\SwaziRepoInterface;
 use Interfaces\UserRepoInterface;
-use Traits\GetUserTrait;
-
 
 class UserFactory
 {
