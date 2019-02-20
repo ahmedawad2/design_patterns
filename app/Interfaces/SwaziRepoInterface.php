@@ -2,7 +2,7 @@
 
 namespace Interfaces;
 
-interface SwaziRepoInterface
+interface SwaziRepoInterface extends UserRepoInterface
 {
     public function getDate();
 }
