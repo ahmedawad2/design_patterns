@@ -35,6 +35,4 @@ class UserFactory
         $this->basicUser->setName($userRepo->getName());
         $this->basicUser->setEmail($userRepo->getEmail());
     }
-
-
 }
