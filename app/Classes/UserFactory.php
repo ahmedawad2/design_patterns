@@ -3,27 +3,41 @@
 namespace Classes;
 
 
+use Interfaces\GetUser;
 use Interfaces\SwaziRepoInterface;
 use Interfaces\UserRepoInterface;
 
 class UserFactory
 {
+    private $basicUser;
 
-    public static function getBasicUser(UserRepoInterface $userRepo): User
+    public function __construct(\Interfaces\User $user = null)
     {
-        $user = new User();
-        $user->setName($userRepo->getName());
-        $user->setEmail($userRepo->getEmail());
-        return $user->getUser();
+        if (isset($user)) {
+            $this->basicUser = $user;
+        } else {
+            $this->basicUser = new User();
+        }
     }
 
-    public static function getSwaziUser(SwaziRepoInterface $swaziRepo): User
+    public function getBasicUser(UserRepoInterface $userRepo): GetUser
     {
-        $user = new SwaziUser;
-        $user->setName($swaziRepo->getName());
-        $user->setEmail($swaziRepo->getEmail());
-        $user->setDate($swaziRepo->getDate());
-        return $user->getUser();
+        $this->prepareBasicUser($userRepo);
+        return $this->basicUser->getUser();
+    }
+
+    public function getSwaziUser(SwaziRepoInterface $swaziRepo): GetUser
+    {
+        $this->prepareBasicUser($swaziRepo);
+        $swaziUser = new SwaziUser($this->basicUser);
+        $swaziUser->setDate($swaziRepo->getDate());
+        return $swaziUser->getUser();
+    }
+
+    private function prepareBasicUser(UserRepoInterface $userRepo)
+    {
+        $this->basicUser->setName($userRepo->getName());
+        $this->basicUser->setEmail($userRepo->getEmail());
     }
 
 

@@ -4,11 +4,18 @@
 namespace Classes;
 
 
+use Interfaces\GetUser;
 use Interfaces\SwaziRepoInterface;
 
-class SwaziUser extends User implements SwaziRepoInterface
+class SwaziUser implements SwaziRepoInterface, GetUser
 {
+    private $user;
     private $date;
+
+    public function __construct(\Interfaces\User $user)
+    {
+        $this->user = $user;
+    }
 
     public function setDate($date = null)
     {
@@ -19,4 +26,18 @@ class SwaziUser extends User implements SwaziRepoInterface
     {
         return $this->date;
     }
+
+    public function getUser(): GetUser
+    {
+        return $this;
+    }
+
+//    public function getName()
+//    {
+//        return $this->user->getName();
+//    }
+//    public function getEmail()
+//    {
+//
+//    }
 }

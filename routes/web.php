@@ -20,13 +20,15 @@ $router->get('/dp', function () {
 
     $basicData = ['name' => 'ahmed', 'email' => 'ahmed@gmail.com'];
     $data = new \Classes\UserArrayRepo($basicData);
-    $user = \Classes\UserFactory::getBasicUser($data);
+    $userFactory = new \Classes\UserFactory();
+
+    $user = $userFactory->getBasicUser($data);
     print_r($user->getName());
     print_r($user->getEmail());
 
 
     $basicData['date'] = \Carbon\Carbon::now();
     $data = new \Classes\SwaziArrayRepo($basicData);
-    $user = \Classes\UserFactory::getSwaziUser($data);
-    print_r($user);
+
+    print_r((new \Classes\UserFactory($user))->getSwaziUser($data));
 });

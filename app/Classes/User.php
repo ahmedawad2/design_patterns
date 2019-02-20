@@ -2,7 +2,9 @@
 
 namespace Classes;
 
-class User implements \Interfaces\User
+use Interfaces\GetUser;
+
+class User implements \Interfaces\User, GetUser
 {
 
     private $name;
@@ -28,7 +30,7 @@ class User implements \Interfaces\User
         return $this->email;
     }
 
-    public function getUser(): \Interfaces\User
+    public function getUser(): GetUser
     {
         return $this;
     }
